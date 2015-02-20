@@ -1,0 +1,27 @@
+{{extend 'layout.html'}}
+<table class="table">
+    <tr>
+    <td><h4>
+        Book Id
+        </h4></td>
+    <td><h4>
+        Book Name</h4></td>
+    <td><h4>
+        
+        Issue Date
+        
+        </h4></td>
+    <td><h4>
+        
+        Due Date</h4></td>
+    
+    </tr>
+    {{for column in col:}}
+    <tr>
+        <td>{{=column.Book_id}}</td>
+        <td>{{=column.Book_Name}}</td>
+        <td>{{=column.Issued_Date}}</td>
+        <td>{{=column.Submission_Date}}</td>
+    </tr>
+    {{pass}}
+</table>

@@ -1,0 +1,53 @@
+@auth.requires_login()
+def home():
+    grid = SQLFORM.grid(db.Books)
+    return locals()
+
+@auth.requires_login()
+def alloted():
+    x = SQLFORM.grid(db.Issued)
+    return locals()
+
+@auth.requires_login()
+def index():
+    rows = db(db.Books.Book_id>0).select(db.Books.Book_Name,db.Books.Book_Availability,db.Books.Book_copies,db.Books.Book_author)
+    #rows = db(db.Books).select()
+    return locals()
+
+@auth.requires_login()
+def issued():
+    col = db(db.Issued.Student_Email==auth.user.email).select()
+    return locals()
+
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/manage_users (requires membership in
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    """
+    return dict(form=auth())
+
+
+@cache.action()
+def download():
+    return response.download(request, db)
+
+def call():
+    return service()
+
+@auth.requires_login() 
+def api():
+    from gluon.contrib.hypermedia import Collection
+    rules = {
+        '<tablename>': {'GET':{},'POST':{},'PUT':{},'DELETE':{}},
+        }
+    return Collection(db).process(request,response,rules)

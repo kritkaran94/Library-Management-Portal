@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+
+{{extend 'layout.html'}}
+<h3>
+    List of Books
+</h3>
+<table class="table">
+    <tr>
+    <td><h4>
+        Book Name
+    </h4></td>
+    <td><h4>
+        Book Availability
+    </h4></td>
+    <td><h4>
+        Book Copies
+    </h4></td>
+    <td><h4>
+        Book Author
+     </h4></td>
+        </tr>
+    {{for i in rows:}}
+    <tr>
+        <td>{{=i.Book_Name}}</td>
+        <td>
+            {{=i.Book_Availability}}</td>
+        <td>
+            {{=i.Book_copies}}</td>
+        <td>{{=i.Book_author}}</td>
+    </tr>
+    {{pass}}
+</table>

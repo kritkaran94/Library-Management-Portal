@@ -1,0 +1,22 @@
+response.logo = A(B('IIIT-S',SPAN(),),XML('&trade;&nbsp;'),
+                  _class="brand",_href="http://iiits.ac.in/")
+response.title = request.application.replace('_',' ').title()
+response.subtitle = ''
+
+## read more at http://dev.w3.org/html5/markup/meta.name.html
+response.meta.author = 'KritKaran <kritkaran.b13@iiits.in>'
+response.meta.keywords = 'web2py, python, framework'
+response.meta.generator = 'Web2py Web Framework'
+
+## your http://google.com/analytics id
+response.google_analytics_id = None
+
+
+response.menu = [
+   # (T('Home'), False , URL('default' , 'index')),
+    (T('Books'), False, URL('default', 'index')),
+    (T('Books Issued'), False, URL('default', 'issued')),
+    #(T('Search By Book Id/Book Name/Author Name'),False, URL('default', 'mean')),
+]
+
+if "auth" in locals(): auth.wikimenu()
